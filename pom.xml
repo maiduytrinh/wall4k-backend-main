@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.tp.wall.ios.rest</groupId>
+    <artifactId>java-wall-ios-rest-api</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Wall IOS Rest API</name>
+    <inceptionYear>2024</inceptionYear>
+
+    <properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mysql.version>8.0.21</mysql.version>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+        <gson.version>2.10.1</gson.version>
+
+        <version.zandero.rest.vertx>1.0.6</version.zandero.rest.vertx>
+        <version.zandero.utils>1.2.10</version.zandero.utils>
+        <version.zandero.utils.extra>1.4.3</version.zandero.utils.extra>
+        <version.zandero.http>1.2.4</version.zandero.http>
+        <version.zandero.utils.junit>1.0.1</version.zandero.utils.junit>
+
+        <version.zandero.cmd>1.3</version.zandero.cmd>
+        <version.zandero.templates>1.3</version.zandero.templates>
+
+        <version.jackson>2.12.3</version.jackson>
+        <version.mustache>[0.9.4,)</version.mustache>
+        <version.vertx>4.0.3</version.vertx>
+
+        <!-- swagger -->
+        <swagger-core-version>1.6.2</swagger-core-version>
+
+        <version.javax-inject>1</version.javax-inject>
+        <version.guice>4.2.2</version.guice>
+        <version.guava>22.0</version.guava>
+
+        <!-- rdbms -->
+        <org.aspectj.version>1.8.9</org.aspectj.version>
+        <c3p0.version>0.9.5.2</c3p0.version>
+        <ehcache.version>3.0.0</ehcache.version>
+        <mysql.version>8.0.27</mysql.version>
+
+        <!-- lucene -->
+        <lucene.version>8.5.2</lucene.version>
+
+        <!-- logging -->
+        <version.logback>1.3.0-alpha5</version.logback>
+        <version.logback-gelf>1.0.4</version.logback-gelf>
+        <commons-text.version>1.9</commons-text.version>
+        <tp.token.version>1.0-new-app-dev</tp.token.version>
+
+        <!-- testing -->
+        <version.junit>[5.6.0,)</version.junit>
+        <version.mockito-all>[1.10.19,)</version.mockito-all>
+        <faker.version>1.0.2</faker.version>
+        <junit.jupiter.version>5.5.2</junit.jupiter.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+
+        <commons-lang3.version>3.11</commons-lang3.version>
+        <firebase-admin.version>7.0.0</firebase-admin.version>
+        <slf4j.version>1.7.21</slf4j.version>
+
+        <!-- Json / Gson -->
+        <gson.version>2.8.6</gson.version>
+        <json.version>20200518</json.version>
+        <google.client.version>1.30.1</google.client.version>
+
+        <!-- Mysql utility-->
+        <mysql.utility.version>1.3-SNAPSHOT</mysql.utility.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.zandero</groupId>
+            <artifactId>rest.vertx</artifactId>
+            <version>${version.zandero.rest.vertx}</version>
+        </dependency>
+
+        <!-- Zandero / internal -->
+        <dependency>
+            <groupId>com.zandero</groupId>
+            <artifactId>utils</artifactId>
+            <version>${version.zandero.utils}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zandero</groupId>
+            <artifactId>templates</artifactId>
+            <version>${version.zandero.templates}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zandero</groupId>
+            <artifactId>cmd</artifactId>
+            <version>${version.zandero.cmd}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>${commons-text.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zandero</groupId>
+            <artifactId>utils.extra</artifactId>
+            <version>${version.zandero.utils.extra}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${version.jackson}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.spullara.mustache.java</groupId>
+            <artifactId>compiler</artifactId>
+            <version>${version.mustache}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+            <version>${version.vertx}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web</artifactId>
+            <version>${version.vertx}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-codegen</artifactId>
+            <version>${version.vertx}</version>
+            <classifier>processor</classifier>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-service-proxy</artifactId>
+            <version>${version.vertx}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-dropwizard-metrics</artifactId>
+            <version>${version.vertx}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-core</artifactId>
+            <version>${swagger-core-version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-jaxrs</artifactId>
+            <version>${swagger-core-version}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>javassist</artifactId>
+                    <groupId>org.javassist</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Guice injection -->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${version.guice}</version>
+        </dependency>
+
+        <!-- Mysql utility -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tptech.utility</groupId>
+            <artifactId>mysql-utility</artifactId>
+            <version>${mysql.utility.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
+
+        <!-- RDBMS -->
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.22.0-GA</version>
+        </dependency>
+
+        <!-- Ehcache 3.x -->
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
+        </dependency>
+        <!-- END OF RDBMS -->
+
+        <!-- lucene indexing -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>${lucene.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-common</artifactId>
+            <version>${lucene.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+            <version>${lucene.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>me.tongfei</groupId>
+            <artifactId>progressbar</artifactId>
+            <version>0.9.3</version>
+        </dependency>
+
+        <!-- LOGGER -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${version.logback}</version>
+        </dependency>
+        <dependency>
+            <groupId>de.siegmar</groupId>
+            <artifactId>logback-gelf</artifactId>
+            <version>${version.logback-gelf}</version>
+        </dependency>
+        <!-- END OF LOGGER -->
+
+        <!--Testing stuff bellow -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${version.junit}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${version.junit}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-junit5</artifactId>
+            <version>${version.vertx}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${faker.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web-client</artifactId>
+            <version>${version.vertx}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tptech.token</groupId>
+            <artifactId>tp-token</artifactId>
+            <version>${tp.token.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.12.0</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <delete file="src/main/resources/assets/index.html" />
+                                        <delete file="src/main/resources/META-INF/persistence.xml" />
+                                        <copy file="src/main/resources/index.dev.html"
+                                              tofile="src/main/resources/assets/index.html" />
+                                        <copy file="src/main/resources/persistence.dev.xml"
+                                              tofile="src/main/resources/META-INF/persistence.xml" />
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>com.github.kongchen</groupId>
+                        <artifactId>swagger-maven-plugin</artifactId>
+                        <version>3.1.4</version>
+                        <configuration>
+                            <apiSources>
+                                <apiSource>
+                                    <locations>com.tp.wall.ios.rest.api</locations>
+                                    <schemes>http</schemes>
+                                    <host>localhost:4444</host>
+                                    <info>
+                                        <title>${project.name}</title>
+                                        <version>${project.version}</version>
+                                    </info>
+                                    <swaggerDirectory>${project.build.outputDirectory}/assets</swaggerDirectory>
+                                    <outputFormats>json</outputFormats>
+                                </apiSource>
+                            </apiSources>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+
+            <resource>
+                <directory>src/main/resources-filtered</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main/generated</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <!-- sonarQube -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.4.0.905</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+            <!-- Maven plugin to use perticular java version to compile code -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <configuration>
+                            <annotationProcessors>
+                                <annotationProcessor>io.vertx.codegen.CodeGenProcessor</annotationProcessor>
+                            </annotationProcessors>
+                            <generatedSourcesDirectory>${project.basedir}/src/main/generated</generatedSourcesDirectory>
+                            <compilerArgs>
+                                <arg>-AoutputDirectory=${project.basedir}/src/main</arg>
+                            </compilerArgs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>java-wall-ios-rest-api</finalName>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Main-Class>com.tp.wallios.Server</Main-Class>
+                                    </manifestEntries>
+                                </transformer>
+                            </transformers>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,40 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+                                 http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+   <persistence-unit name="tp-pu" transaction-type="RESOURCE_LOCAL">
+         <properties>
+            <property name="hibernate.connection.autocommit" value="true" />
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver" />
+           	<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/utf8wall4k?useSSL=false&amp;autoReconnect=true&amp;useTimezone=true" />
+            <property name="javax.persistence.jdbc.user" value="tpcom" />
+            <property name="javax.persistence.jdbc.password" value="thangtu8384" />
+            <property name="hibernate.connection.provider_class" value="org.hibernate.hikaricp.internal.HikariCPConnectionProvider" />
+
+            <!-- Maximum waiting time for a connection from the pool -->
+            <property name="hibernate.hikari.connectionTimeout" value="10000" />
+
+            <!-- Minimum number of ideal connections in the pool -->
+            <property name="hibernate.hikari.minimumIdle" value="20" />
+
+            <!-- Maximum number of actual connection in the pool -->
+            <property name="hibernate.hikari.maximumPoolSize" value="300" />
+            <!-- Maximum time that a connection is allowed to sit ideal in the pool -->
+            <property name="hibernate.hikari.idleTimeout" value="200000" />
+
+            <!-- Important -->
+            <property name="hibernate.generate_statistics" value="false" />
+            <property name="hibernate.jmx.enabled" value="false" />
+            <property name="hibernate.jmx.usePlatformServer" value="false" />
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.id.new_generator_mappings" value="false" />
+            <property name="hibernate.connection.characterEncoding" value="utf8" />
+            <property name="hibernate.connection.useUnicode" value="true" />
+            <property name="hibernate.connection.charSet" value="UTF-8" />
+        </properties>
+    </persistence-unit>
+</persistence>

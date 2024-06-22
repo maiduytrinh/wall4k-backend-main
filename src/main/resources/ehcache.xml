@@ -1,0 +1,29 @@
+<ehcache>
+    <diskStore path="java.io.tmpdir"/>
+    
+    <!--
+        name : the name of the cache, you can get a specified Cache object by specifying the name
+        maxElementsInMemory : The maximum number of elements allowed to be stored in memory, 0 means unlimited
+        clearOnFlush: Whether to clear the memory when the amount of memory is the largest.
+        eternal : Sets whether the object in the cache is permanent, if so, the timeout setting will be ignored and the object never expires. Depending on the stored data, for example, some static data such as provinces and cities can be set to never be out of date
+        timeToIdleSeconds : Sets the allowable idle time (unit: seconds) for an object before it expires. Only used when the internal=false object is not permanently valid, optional attribute, the default value is 0, that is, the idle time is infinite.
+        timeToLiveSeconds : The time-to-live (TTL) of cached data, that is, the maximum time interval between an element's construction and its death. This is only valid when the element is not permanently resident. If the value is 0, it means that the element can pause for an infinite time time. (and the above two take the minimum value)
+        overflowToDisk: Whether to enable disk caching when memory is insufficient.
+        maxEntriesLocalDisk: When the number of objects in memory reaches maxElementsInMemory, Ehcache will write objects to disk.
+        maxElementsOnDisk: The maximum number of caches on the hard disk.
+        diskSpoolBufferSizeMB: This parameter sets the buffer size of the DiskStore (disk cache). The default is 30MB. Each Cache should have its own buffer.
+        diskPersistent: Whether to store the cache data of the hard disk when the VM is restarted. The default value is false.
+        diskExpiryThreadIntervalSeconds: Disk expiration thread running time interval, the default is 120 seconds.
+        memoryStoreEvictionPolicy: When the maxElementsInMemory limit is reached, Ehcache will clean up memory according to the specified policy. The default policy is LRU (Least Recently Used). You can set it to FIFO (first in, first out) or LFU (less used). It is a pity here that Ehcache does not provide an interface for user-defined strategies. It only supports three specified strategies, which is not ideal.
+    -->
+    
+    <defaultCache
+        maxElementsInMemory="1000"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="3600"
+        overflowToDisk="true"
+        statistics="true"
+    />
+        
+</ehcache>
